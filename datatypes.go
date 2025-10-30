@@ -43,6 +43,8 @@ var initial_Population_Deer = 30
 var initial_Population_Wolf = 20
 var initial_Population_Human = 2
 
+var Eating_Threshold = 10.0
+
 const GrowthRate_Rabbit = 0.5
 const GrowthRate_Sheep = 0.3
 const GrowthRate_Deer = 0.2

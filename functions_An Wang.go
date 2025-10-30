@@ -88,7 +88,7 @@ func randomPartition(total, k, min int) []int {
 
 // function to update populations based on growth rates
 func UpdatePopulations(ecosystem Ecosystem) Ecosystem {
-	for i := range ecosystem.Families {
+	for i := 0; i < len(ecosystem.Families)-1; i++ {
 		gr := ecosystem.Families[i].species.GrowthRate // passive growth rate
 		// prey gets additional growth from plants, should be updated in next step
 		if ecosystem.Families[i].species.Type == "prey" {
@@ -96,8 +96,13 @@ func UpdatePopulations(ecosystem Ecosystem) Ecosystem {
 		}
 
 		//UPDATE!!! also need to update growth rate based on interactions with other species
-
-		//
+		for j := i + 1; j < len(ecosystem.Families); j++ {
+			if i == j {
+				continue
+			} else {
+				Check(ecosystem.Families[i], ecosystem.Families[j])
+			}
+		}
 
 		size := ecosystem.Families[i].Size
 		newSize := size + int(math.Round(float64(size)*gr))
